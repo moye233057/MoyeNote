@@ -1,0 +1,52 @@
+x=np.array([[],[],...]) 建立n维数组
+x.ndim   #数组维度数
+x.shape #数组的维数，返回的格式(n,m),其中n为行数，m为列数
+x.size #数组元素的总数
+x.dtype #数组元素类型
+x.itemsize #每个元素占有的字节大小
+x.data #数组元素的缓冲区
+
+两种创建序列数组的函数arange和linspace
+arange(a,b,c) 参数分别表示开始值，结束值，步长
+linspace(a,b,c) 参数分别表示开始值，结束值，元素数量
+还可以调用它们自身的方法reshape()指定形状
+
+高斯分布
+np.random.randn(shape)：生成对应形状（shape）的高斯分布
+np.random.normal(loc, scale, size)：生成均值为loc，标准差为scale，形状（shape）为size的高斯分布
+均匀分布
+np.random.rand(shape)：生成对应形状（shape）的均匀分布
+np.random.uniform(low, high, size)：生成一个从[low, high)中随即采样的，样本数量为size的均匀分布
+
+zeros数组：全零数组，元素全为零。
+ones数组：全1数组，元素全为1。
+empty数组：空数组，元素全近似为0。
+
+合并与分割
+np.hstack((a,b))：按行合并，要求a和b的 行 数 相 同 \color{red}{行数相同} 行数相同
+np.vstack((a,b))：按列合并，要求a和b的 列 数 相 同 \color{red}{列数相同} 列数相同
+np.c_[a,b]：用法如同np.hstack((a,b))
+np.r_[a,b]：用法如同np.vstack((a,b))
+
+2. 矩阵
+1）创建矩阵
+Numpy的矩阵对象与数组对象相似，主要不同之处在于，矩阵对象的计算遵循矩阵数学运算规律。矩阵使用matrix函数创建。
+>>> A=matrix('1.0 2.0;3.0 4.0')
+>>> A
+2）矩阵运算
+矩阵的常用数学运算有转置，乘法，求逆
+A.T #转置
+print(A*y) #矩阵乘法
+print(A.I) #逆矩阵
+numpy.dot()
+此函数返回两个数组的点积。
+>>> a=np.array([[1,2],[3,4]])
+>>> b=np.array([[11,12],[13,14]])
+>>> np.dot(a,b)
+array([[37, 40],     #[[1*11+2*13, 1*12+2*14],[3*11+4*13, 3*12+4*14]]
+       [85, 92]])
+
+numpy.vdot()
+此函数返回两个向量的点积。 如果第一个参数是复数，那么它的共轭复数会用于计算。 如果参数id是多维数组，它会被展开。
+>>> np.vdot(a,b)
+130    #1*11+2*12+3*13+4*14=130
