@@ -32,17 +32,30 @@ app.debug = True
 
 @app.route('/abs/', methods=['post'])
 def add_stu():
-    if not request.data:  # 检测是否有数据
+    if not request.data:
         return 'fail'
     data = request.data.decode('utf-8')
-    # 获取到POST过来的数据，因为我这里传过来的数据需要转换一下编码。根据晶具体情况而定
     content_json = json.loads(data)
     print(content_json)
-    # 把区获取到的数据转为JSON格式。
     return jsonify(content_json)
-    # 返回JSON数据。
 
+# request
+@app.route('/<path:info>')
+def request_url(info):
+    print(info, type(info))
+    infos = {
+        '1': request.url,  # 瀹屾暣鐨勮姹俇RL
+        '2': request.base_url,  # 鍘绘帀GET鍙傛暟鐨刄RL
+        '3': request.host_url,  # 鍙湁涓绘満鍜岀鍙ｇ殑URL
+        '4': request.path,  # 瑁呴グ鍣ㄤ腑鍐欑殑璺敱鍦板潃
+        '5': request.method,  # 璇锋眰鏂规硶绫诲瀷
+        '6': request.remote_addr,  # 杩滅▼鍦板潃
+        '7': request.args.get('path'),  # 鑾峰彇url鍙傛暟
+        '8': request.headers.get('User-Agent')    # 鑾峰彇headers淇℃伅
+    }
+    data = infos[info]
+    return data
 
 if __name__ == '__main__':
     app.run(host='192.168.1.100', port=8001)
-    # 这里指定了地址和端口号。
+
