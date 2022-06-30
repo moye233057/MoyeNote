@@ -51,6 +51,8 @@
 # start = timezone.now() - timedelta(hours=23, minutes=59, seconds=59)
 # mods = Mod.objects.filter(recordData__gt=start)
 # timezon.now()获取当前时间，在用timedelta减一天，最后查询记录日期大于昨天的数据
-# 2、查询日期为今天的记录，个人一般将对应字段取年月日用字符串存放
-# today = datetime.datetime.now().date()  # 例2022-06-30
-# mods = Mod.objects.filter(recordData__gt=today)            
+# 2、查询一段时间内的记录：
+# 例如10天~30天
+# day30 = (datetime.datetime.now() + datetime.timedelta(days=-30)).date()
+# day10 = (datetime.datetime.now() + datetime.timedelta(days=-10)).date()
+# mods = Mod.objects.filter(recordData__lte=day10, recordData__gte=day30)      
