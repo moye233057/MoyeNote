@@ -32,4 +32,25 @@
 # mods = Mod.objects.filter(title__icontains='方法')
 
 # 六、排除查询
-# 如果想要查询排除掉不符合条件后的数据，可以用ex
+# 如果想要查询排除掉不符合条件后的数据，可以用exclude
+# 例如：
+# 查找用户名为zhangsan但是标题不包含李四的数据
+# mods = Mod.objects.filter(username='zhangsan').exclude(title='李四')
+
+# 七、动态查询
+# 如果想要查询的字段和内容是动态的，可以将字段和内容用键值对的形式放在字典中，再用**dict形式查询
+# 例如：
+# kwargs = {'title': '测试标题', 'content': '科技'}
+# mods = Mod.objects.filter(**kwarg)
+
+# 八、时间范围查询
+# 如果要查询的字段的类型为models.DateTimeField,可以通过字段__gt大于/gt大于等于/lt小于/lte小于等于
+# 对于时间，越晚越大，例如：2022-06-30大于2022-06-28。
+# 例如：
+# 1、查询不超过一天的记录:
+# start = timezone.now() - timedelta(hours=23, minutes=59, seconds=59)
+# mods = Mod.objects.filter(recordData__gt=start)
+# timezon.now()获取当前时间，在用timedelta减一天，最后查询记录日期大于昨天的数据
+# 2、查询日期为今天的记录，个人一般将对应字段取年月日用字符串存放
+# today = datetime.datetime.now().date()  # 例2022-06-30
+# mods = Mod.objects.filter(recordData__gt=today)            
