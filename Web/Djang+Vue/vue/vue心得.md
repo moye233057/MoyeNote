@@ -1,6 +1,6 @@
 # 前端心得
 一、部署到服务器需要注意的点
-（1）注意路由文件router里的index.js中如果存在mode:history需要去掉
+（1）注意路由文件router里的index.js中如果存在**mode:history**需要去掉
 （2）如果前端文件中要静态图片，假设引用该图片的vue文件在component的下一级，需要将其路径修改为：“../../static/...”，用相对文件路径来理解。
 没多一级加一个“../”，在nginx中配置加上：
 location /static {
@@ -23,7 +23,10 @@ this.$router.push({path:'/thankyou/'+id});//跳到欢迎页
 代表对应id的下一个动态页面，在下一个页面的vue文件中就可以这样获取id：
 var id = this.$route.params.id
 
-（5）在config文件夹中的index.js中，对build相关的默认api进行修改。
+(5)不管是启动还是打包亦或是其他命令，都能在package.json中的scripts看的到
+npm run scripts中的命令，根据vue版本以及项目的不同都会有所变化
+
+(6)当前端项目代码编写完成，需要打包上线到服务器时，要在config文件夹中的index.js中，对build相关的默认api进行修改。
 两个例子：
 1、dev和build分开配置。
 1.build中的proxy(XXX)里的target要变化

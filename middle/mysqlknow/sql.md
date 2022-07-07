@@ -49,3 +49,5 @@ alter table table_name change 旧属性名 新属性名 新数据类型；
 (10)修改字段的顺序：
 alter table table_name modify 属性名1 数据类型 first/after 属性名2；
 属性名1 代表要修改的字段，”first“代表把属性1放到表的第一个位置，“after 属性名2 ”代表把属性1调整到属性2后边。
+
+三、字段/列(column)
