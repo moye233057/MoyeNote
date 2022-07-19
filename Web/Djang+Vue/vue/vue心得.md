@@ -26,7 +26,34 @@ var id = this.$route.params.id
 (5)不管是启动还是打包亦或是其他命令，都能在package.json中的scripts看的到
 npm run scripts中的命令，根据vue版本以及项目的不同都会有所变化
 
-(6)当前端项目代码编写完成，需要打包上线到服务器时，要在config文件夹中的index.js中，对build相关的默认api进行修改。
+(6)vue如果打包文件上传到云服务器出现static文件查不到
+具体是查不到对应文件夹下的static文件
+例如：
+正确的路径为:
+域名+打包文件夹名+static/...
+出现的错误的路径为:
+域名+static/...
+表现为浏览器控制台，出现域名+static/...找不到static文件报错，
+解决办法为：
+在vue项目的util.js文件的下面的代码块中加上publicPath: '../../'
+if (options.extract) {
+      return ExtractTextPlugin.extract({
+        use: loaders,
+        fallback: 'vue-style-loader',
+        **publicPath: '../../'**
+      })
+    } else {
+      return ['vue-style-loader'].concat(loaders)
+    }
+再在config的index.js文件下里的build配置加上assetsPublicPath: "/wj/",
+
+(7)域名备案通过后要在网站的底部加上备案号，但是用<el-footer>可能会添加底部栏不成功，这时可以用通用<div>代码
+<div style="text-align:center;bottom:0;margin:0 auto;width:100%;color: #5c6b77">
+    <a target="_blank" style="color: #5c6b77;text-decoration:none;" href="https://beian.miit.gov.cn/">粤ICP备18136755号-2</a>
+</div>
+
+
+(8)当前端项目代码编写完成，需要打包上线到服务器时，要在config文件夹中的index.js中，对build相关的默认api进行修改。
 两个例子：
 1、dev和build分开配置。
 1.build中的proxy(XXX)里的target要变化
