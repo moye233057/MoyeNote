@@ -19,4 +19,9 @@ for i in range(length):
 squares = [x**2 for x in range(1,10)]
 (2)循环去除空格
 mybag = [' glass',' apple','green leaf ']   #有的前面有空格，有的后面有空格
-[one.strip() for one in mybag]    
+[one.strip() for one in mybag]
+
+# 四、将列表中的第一个移到最后一位。
+lst = [0,1,2,3,4,5]
+last = lst.pop(0)
+lst.append(last)
