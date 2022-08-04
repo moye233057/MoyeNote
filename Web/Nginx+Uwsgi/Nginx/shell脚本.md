@@ -16,7 +16,7 @@ else
     echo "备份成功"
 fi
 ```
-#!/bin/bash为shell文件开头必填项，它**指定了shell脚本解释器的路径**，而且这个指定路径只能放在文件的第一行
+#!/bin/bash为shell文件开头必填项，它**指定了shell脚本解释器的路径**，而且这个指定路径只能放在文件的第一行.第一行写错或者不写时，系统会有一个默认的解释器进行解释。
 export PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/root/bin设置环境变量最好也不变
 cp、mv这些主要运行命令前面加上sudo防止权限不够（Permission denied）
 # (3)用crontab -e打开定时器设置，写入：
