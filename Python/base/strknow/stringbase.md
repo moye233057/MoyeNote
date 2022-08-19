@@ -54,3 +54,15 @@ print(s8)
 # * %% 字符 %
 
 
+# 判断一个字符是不是中文(范围为：['/u4e00'，'/u9fa5']。)
+（1）
+def is_Chinese(word):
+    for ch in word:
+        if '\u4e00' <= ch <= '\u9fff':
+            return True
+    return False
+print(is_Chinese("中文"))
+
+（2）
+str.isalpha()
+中文的汉字会被 isalpha 判定为 True
