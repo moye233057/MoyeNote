@@ -50,3 +50,56 @@ sh后面填要运行的脚本的路径
 整个命令的意思是：在每一天的16点运行一次copyfile.sh脚本，并把打印(echo)结果写在copyfile.log里面
 # (4)查看正在定时运行的脚本crontab -l
 
+
+# 三、归档文件
+  要求: 实现每天对指定目录归档备份的脚本，输入一个目录名称（末尾不带/），将目录下所有文件按天归档保存，并将归档日期
+  附加在归档文件名上
+  用到归档命令: tar
+  后面加上-c选项表示归档，加上-z选项表示同时进行压缩，得到的文件名后缀名为.tar.gz
+  脚本:
+  #! /bin/bash
+  # 首先判断输入参数个数是否为1
+  if [ $# -ne 1 ]
+  then
+      echo "参数个数错误！应该输入一个参数作为归档目录名"
+  fi
+
+  # 从参数中获取目录名称
+  if [ -d $1 ]
+  then
+      echo
+  else
+      echo
+      echo "目录不存在！"
+      exit
+  fi
+
+  DIR_NAME=$[basename $1]
+  DIR_PATH=$[cd $(dirname $1); pwd]
+
+  # 获取当前日期
+  DATE=$(date +%y%m%d)
+
+  # 定义生成归档文件的名称
+  FILE=archive_${DIR_NAME}_$DATE.tar.gz
+  DEST=/root/archive/$FILE
+
+  # 开始归档目录文件
+  echo "开始归档"
+  echo
+
+  tar -czf $DEST $DIR_PATH/$DIR_NAME
+
+  if [ $? -eq 0 ]
+  then
+     echo
+     echo "归档成功"
+     echo "归档文件为: $DEST"
+     echo
+  else
+     echo "归档出现问题"
+     echo
+  fi
+  
+  exit
+
