@@ -103,3 +103,88 @@ sh后面填要运行的脚本的路径
   
   exit
 
+# 四、正则
+  # (1)grep、sed、awk等文本处理工具都支持正则表达式
+  # (2)常规匹配
+  一串不包含特殊字符的表达式匹配它自己:
+  cat /etc/passwd |grep root
+  匹配所有包含root的行
+  # (3)特殊匹配
+  1、匹配一行的开头(^):
+  cat /etc/passwd |grep ^a
+  匹配所有以a开头的行
+  2、匹配一行的结尾($):
+  cat /etc/passwd |grep t$
+  匹配所有以t结尾的行
+  3、匹配空行
+  cat /etc/passwd |grep ^$
+  4、匹配任意字符(.)
+  cat /etc/passwd |grep r..t
+  匹配r和t之间有任意两个字符的行
+  5、上一个字符出现0次或多次(*)，1次或多次(+)
+  cat /etc/passwd |grep ro*t
+  会匹配到rt、rot、root、rooot等情况
+  因此 .* 就表示任意字符出现任意次
+  6、匹配范围内的一个字符([])
+  [6,8]       匹配6或8
+  [0-9]       匹配0到9中的任意一个数字
+  [0-9]*      匹配任意长度的数字字符串
+  [a-c, e-f]  匹配a-c或者e-f之间的任意字符
+  # (4)实例
+  匹配手机号
+  echo "15399876478" |grep -E ^1[34578][0-9]{9}$
+  加了-E才能支持{9}的写法
+
+
+# 五、文本处理工具
+  # (1)cut  剪
+  1、概念
+    在文件中负责剪切数据。从文件中每一行剪切字节、字符和字段输出
+  2、语法
+    cut [选项] filename
+  3、选项说明
+    -f  列号，第几列
+    -d  分隔符，按照指定的分隔符分割列，默认\t
+    -c  按字符进行切割，后加数字表示第几列，例如 -c 1
+  4、例子
+  1.截取文档的第一列，以空格为分割符
+  cut -d " " -f 1 cut.txt
+  2.截取第二、三列
+  cut -d " " -f 2,3 cut.txt
+  3.截取passwd中有用信息
+  cat /etc/passwd |grep bash$ | cut -d ":" -f 1,6,7
+  4.提取ifconfig的ip(以ubuntu系统为例)
+  ifconfig docker0 | grep Bcast | cut -d " " -f 12
+
+  # (2)awk
+  # 1.概念
+  把文件逐行读入，以空格为默认分隔符将每行切片，切开的部分再进行分析处理
+  # 2.语法
+  awk [选项参数] '/pattern1/{action1} /pattern2/{action2}...' filename
+  parttern: 表示awk在数据中查找的内容，就是匹配模式
+  action: 在找到匹配内容时所执行的一些了命令
+  # 3、选项参数说明
+  -F  指定输入文件分隔符
+  -v  赋值一个用户定义变量
+  # 4、例子
+  1.搜索passwd文件以root开头所有行，并输出该行的第7列
+  awk -F ":" '/^root/ {print $7}'
+  2.搜索passwd文件以root开头所有行，并输出该行的第1列和第7列，中间以“,”号分割
+  awk -F ":"  '/^root/ {print $1","$7}'
+  3.只显示/etc/passwd的第一列和第七列，以逗号分割，且在所有行前面添加列名user，shell在最后一行添加“abc”
+  awk -F : 'BEGIN{print "user, shell"} {print $1","$7} END{print "abc"} passwd
+  4.将passwd文件中的用户id增加1并输出
+  awk -v i=1 -F ": '{print $3+i}'
+  # 5、内置变量
+  FILENAME  文件名
+  NR        行号
+  NF        切割后，列的个数
+  1.统计passwd文件名、每行行号、每行列数
+  awk -F : '{print "filename" FILENAME ",linenum" NR "col" NF}'
+  2.输出ifconfig的行号
+  ifconfig | awk '/^$/ {print NR}'
+
+
+# 六、发送信息给另一个用户
+ (1)查看用户是否登录
+ login_user=$(who | grep -i -m 1 $1 | awk '{print $1}')
