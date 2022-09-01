@@ -21,37 +21,7 @@
     2. . hellow.sh   
 
 
-# 二、如何在ubuntu(Linux)中设置一个自动化脚本
-# (1)创建一个脚本文件.sh
-# (2)写入脚本文件，以复制文件为例:
-```shell
-#!/bin/bash
-#设置环境变量
-export PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/root/bin
-#复制项目
-sudo cp -r /home/trizhi2/zhangshiju/patentinfer /home/trizhi2/zhangshiju/oldproject/tuiliold/
-#修改复制后的项目名称
-sudo mv /home/trizhi2/zhangshiju/oldproject/tuiliold/patentinfer /home/trizhi2/zhangshiju/oldproject/tuiliold/patentinfernew
-#判断是否备份成功        
-if [ $? -ne 0 ];then
-    echo “备份失败”
-else
-    echo "备份成功"
-fi
-```
-#!/bin/bash为shell文件开头必填项，它**指定了shell脚本解释器的路径**，而且这个指定路径只能放在文件的第一行.第一行写错或者不写时，系统会有一个默认的解释器进行解释。
-export PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/root/bin设置环境变量最好也不变
-cp、mv这些主要运行命令前面加上sudo防止权限不够（Permission denied）
-# (3)用crontab -e打开定时器设置，写入：
-0 16 * * * sh /home/trizhi2/zhangshiju/copyfile.sh > /home/trizhi2/zhangshiju/copyfile.log
-sh前面的五个位置具体作用见:https://blog.csdn.net/woshiyangyunlong/article/details/99944576
-sh后面填要运行的脚本的路径
->后面代表要将运行结果写入哪个文件
-整个命令的意思是：在每一天的16点运行一次copyfile.sh脚本，并把打印(echo)结果写在copyfile.log里面
-# (4)查看正在定时运行的脚本crontab -l
-
-
-# 三、归档文件
+# 二、归档文件
   要求: 实现每天对指定目录归档备份的脚本，输入一个目录名称（末尾不带/），将目录下所有文件按天归档保存，并将归档日期
   附加在归档文件名上
   用到归档命令: tar
@@ -103,7 +73,7 @@ sh后面填要运行的脚本的路径
   
   exit
 
-# 四、正则
+# 三、正则
   # (1)grep、sed、awk等文本处理工具都支持正则表达式
   # (2)常规匹配
   一串不包含特殊字符的表达式匹配它自己:
@@ -136,7 +106,7 @@ sh后面填要运行的脚本的路径
   加了-E才能支持{9}的写法
 
 
-# 五、文本处理工具
+# 四、文本处理工具
   # (1)cut  剪
   1、概念
     在文件中负责剪切数据。从文件中每一行剪切字节、字符和字段输出
@@ -185,6 +155,6 @@ sh后面填要运行的脚本的路径
   ifconfig | awk '/^$/ {print NR}'
 
 
-# 六、发送信息给另一个用户
+# 五、发送信息给另一个用户
  (1)查看用户是否登录
  login_user=$(who | grep -i -m 1 $1 | awk '{print $1}')
