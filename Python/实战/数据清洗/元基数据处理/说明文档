@@ -1,16 +1,16 @@
-ÐèÒªµÄ¿â£º
+ï¿½ï¿½Òªï¿½Ä¿â£º
 pands==1.1.5
 xlrd==1.2.0
-ÒÑ¾­´ò°üÔÚÏîÄ¿ÎÄ¼þÖÐ
+ï¿½Ñ¾ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ä¿ï¿½Ä¼ï¿½ï¿½ï¿½
 
-python»·¾³ÏÂÖ±½ÓÔËÐÐyuanprocess.py¼´¿É
-¿ÉÉèÖÃµÄ²ÎÊý£º
-Êý¾ÝÎÄ¼þ·ÅÈëdataÎÄ¼þ¼ÐÖÐ£¬»òÕß×ÔÐÐ¸ü¸ÄÂ·¾¶
-sorpath:Òª²åÈëµÄÊý¾ÝµÄÎÄ¼þµÄÂ·¾¶.xlsx
-respath:Ä¿±êÎÄ¼þµÄÂ·¾¶.xlsx
-sheetname:excelÎÄ¼þ¹¤×÷²¾µÄÃû³Æ¡£³ÌÐòÖÐÒòÎªÁ½¸öÎÄ¼þ¹¤×÷²¾Ãû³ÆÒ»ÑùËùÒÔÖ»ÉèÁËÒ»¸ö
-Èç¹û£¬Á½¸öÎÄ¼þ¹¤×÷²¾Ãû×Ö²»Ò»Ñù£¬Çë·Ö±ðÉèÖÃ²»Í¬±äÁ¿
+pythonï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ö±ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½yuanprocess.pyï¿½ï¿½ï¿½ï¿½
+ï¿½ï¿½ï¿½ï¿½ï¿½ÃµÄ²ï¿½ï¿½ï¿½ï¿½ï¿½
+ï¿½ï¿½ï¿½ï¿½ï¿½Ä¼ï¿½ï¿½ï¿½ï¿½ï¿½dataï¿½Ä¼ï¿½ï¿½ï¿½ï¿½Ð£ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ð¸ï¿½ï¿½ï¿½Â·ï¿½ï¿½
+sorpath:Òªï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ýµï¿½ï¿½Ä¼ï¿½ï¿½ï¿½Â·ï¿½ï¿½.xlsx
+respath:Ä¿ï¿½ï¿½ï¿½Ä¼ï¿½ï¿½ï¿½Â·ï¿½ï¿½.xlsx
+sheetname:excelï¿½Ä¼ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ¡ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Îªï¿½ï¿½ï¿½ï¿½ï¿½Ä¼ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ò»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ö»ï¿½ï¿½ï¿½ï¿½Ò»ï¿½ï¿½
+ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ä¼ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ö²ï¿½Ò»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ö±ï¿½ï¿½ï¿½ï¿½Ã²ï¿½Í¬ï¿½ï¿½ï¿½ï¿½
 
-enlist£¬zhlist:µÚÈý¸ö²ÎÊý´ú±íÈ¡ÄÄÒ»ÁÐµÄÊý¾Ý
+enlistï¿½ï¿½zhlist:ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½È¡ï¿½ï¿½Ò»ï¿½Ðµï¿½ï¿½ï¿½ï¿½ï¿½
 
-getinsertdataµÄfirstIDÊÇ´ú±íÊý¾Ý²åÈëµÚ¼¸ÐÐ£¬Í¬Ê±×÷ÎªIDÊ¹ÓÃ
+getinsertdataï¿½ï¿½firstIDï¿½Ç´ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ý²ï¿½ï¿½ï¿½Ú¼ï¿½ï¿½Ð£ï¿½Í¬Ê±ï¿½ï¿½ÎªIDÊ¹ï¿½ï¿½
