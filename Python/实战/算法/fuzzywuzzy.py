@@ -11,7 +11,7 @@ with open(path,'r',encoding='utf-8-sig') as f:
         cut = jieba.cut(word)
         print(list(cut))
 
-# 文本相似度
+
 from fuzzywuzzy import fuzz
 # aa=fuzz.partial_ratio(u"??????????fd??", u""" """)
 # print(aa)
