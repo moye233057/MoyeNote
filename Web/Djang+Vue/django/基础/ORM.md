@@ -1,9 +1,26 @@
 # 一、基础
 (1)创建
-obj = modelname.object.crate(**filter)
-obj, res = modelname.boject.get_or_create(**filter)
+obj = modelname.objects.crate(**kwargs)
+obj, res = modelname.objects.get_or_create(**kwargs)
+update_or_create(**kwargs, default={})  找到更新,如果没有找到创建defaults={} 中的数据
 
-(2)查询
+(2)删除
+modelname.objects.get().delete()
+
+(3)修改
+# 修改方式1 update()
+models.Book.objects.filter(id=1).update(price=3)
+# 修改方式2 obj.save() 
+book_obj=models.Book.objects.get(id=1)
+book_obj.price=5
+book_obj.save()
+
+(4)查询
+1.基本查询
+modelname.objects.all()
+modelname.objects.get()
+modelname.objects.filter(Field__{})
+2.范围查询
  __lt:小于
  __lte:小于等于
  __gt:大于
@@ -11,6 +28,26 @@ obj, res = modelname.boject.get_or_create(**filter)
  __in:符合集合条件的数据
  __icontain:包含，模糊匹配，忽略大小写
  __contain:包含，模糊匹配，精确大小写
+ __isnull:是否为空
+ __range：范围
+ __regex：正则区分大小写
+ __iregex：正则不区分大小写
+ __date：日期
+ __year：年份
+ __month：月份
+ __day：日
+ __week_day:工作日
+ __hour:小时
+ __minute:分钟
+ __second:秒
+
+ 3.拓展查询
+ .first() 第一个
+ .last() 最后一个
+ .exclude() 不包含
+ .distinct() 去重
+ .order_by() 排序
+
 
 
 # 二、例子
