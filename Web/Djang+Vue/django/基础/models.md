@@ -219,3 +219,10 @@ choices=choice 提供下拉框
 error_messages="错误信息" 错误信息
 validators  自定义错误验证（列表类型），从而定制想要的验证规则
 
+
+# 3、Django class Meta
+  1.abstract = True  #将这个类设置为抽象类，加入这个设置后，在迁移的时候不会创建表
+                      这样设置是为了创建用于把字段继承给子类的类
+  2.db_table = "name"  #设置当前表在数据库存储的表名
+  3.verbase_name = "name"  #设置当前表在admin后台的显示名称
+  4.ordering = ["fieldname"]  #告诉Django模型对象返回的记录结果集是按照哪个字段排序的
