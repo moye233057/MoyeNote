@@ -53,3 +53,7 @@ loop: 循环播放
 
 
 四、链接标签
+<a href="" target=""></a>
+属性：
+href: 跳转的链接
+target: 目标网页的打开形式
