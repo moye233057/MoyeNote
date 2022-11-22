@@ -8,7 +8,7 @@ reverseDict = dict(zip(myinfor.values(),myinfor.keys()))
 
 
 json = {"zhangsan": 90, "lisi": 78, "wangermazi": 39}
-# """求字典值的平均"""
+# """求字典值的平均值"""
 lst = sum(list(json.values())) / len(json)
 # """字典值的排序，利用sorted函数"""
 sor = sorted(json.items(), key=lambda x: x[1], reverse=False)
