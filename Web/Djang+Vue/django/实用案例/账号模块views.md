@@ -1,3 +1,4 @@
+```
 class SmsCodeAPIView(ModelViewSet):
     """
     发送短信验证码
@@ -222,3 +223,4 @@ class AccountAPIView(ModelViewSet):
         account.save(update_fields=['logStatus'])
         logOutCreate(username, ip, device)
         return responseJson(200, False, None, '登出成功')
+```

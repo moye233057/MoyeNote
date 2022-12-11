@@ -61,10 +61,33 @@ modelname.objects.filter(Field__{})
  iregex：大小写不敏感的判断的判断某字段的值是否满足正则表达式的条件。
 
 # 2、多条件或查询
- 一般或运行的想法是利用“|” 或者 “or”
- 但是django需要用到Q语句和“|”进行结合
- 例如：
+```
+ #一般或运行的想法是利用“|” 或者 “or”
+ # 但是django需要用到Q语句和“|”进行结合
+ # 例如：
  mods = Mod.objects.filter(Q(title=title)|Q(content=content)) 
+ ```
+
+```
+# 可变的或操作
+# 思路是先把尽可能获取需要的所有数据，再根据条件一个个查询
+# 例: 查询学生昵称包含a或b或c或其他字母的
+words = ["a", "b", "c"]
+stus = Student.objects.all()
+ids = []
+res = []
+for word in words:
+    oneWordStu = stus.filter(nickname__icontains=word)
+    if len(oneWordStu) > 0:
+        for stu in oneWordStu:
+            if stu.id not in ids:
+                ids.append(stu.id)
+                res.append({
+                    "id": stu.id,
+                    "name": stu.name,
+                    "title": stu.title,
+                })
+```
 
 # 3、外键查询
  如果一个模型的字段通过OneToOneField、ForeignKey、ManyToManyField与另一个模型关联起来
@@ -109,3 +132,64 @@ modelname.objects.filter(Field__{})
  day30 = (datetime.datetime.now() + datetime.timedelta(days=-30)).date()
  day10 = (datetime.datetime.now() + datetime.timedelta(days=-10)).date()
  mods = Mod.objects.filter(recordData__lte=day10, recordData__gte=day30)      
+
+
+## 9.如果A对B设置了多对多关系，那么它们可以互相查询
+```
+class B:
+    name = models.CharField(max_length=32)
+
+class A:
+    b = models.ManyToManyField('B', blank=True)
+
+# A -> B
+a = A.objects.get(id=1)
+bs = a.b.all()
+# B -> A
+name = "智能"
+b = B.objects.get(name_=name)
+as = b.a_set.all() 
+```
+
+## 10.ManyToMany属性的修改
+```
+a = A.objects.get(id=1)
+b1 = B.objects.create(name="1")
+a.b.add(b1)
+b2 = B.objects.create(name="2")
+b3 = B.objects.create(name="3")
+lst = [b2, b3]
+# 多个添加可以用可变参数形式，列表内是关联的模型的实例
+a.b.add(*lst)
+a.save()
+```
+
+## 11.ManyToMany属性清空并重新写入
+```
+b4 = B.objects.create(name="4")
+b5 = B.objects.create(name="5")
+new_bs = [b4, b5]
+a = A.objects.get(id=1)
+a.b.clear()
+a.b.add(*new_bs)
+```
+
+## 12.账号对每一个文章最多点赞一次的功能实现
+```
+# 账号模型下有一个like属性，通过多对多关联到文章模型
+# 根据登录的账号获取用户名得到该账号实例
+username = "zhangsan"
+account, res = Account.objects.get(username=username)
+id = request.POST.get("id")
+# 通过文章id得到要点赞文章实例
+try:
+    investment = Investment.objects.get(id=id)
+except:
+    return responseJson(404, True, None, "找不到该投资项目")
+# 查找账号下的like属性是否已关联该文章，如果关联说明已点赞，需要去除关联(取消点赞)
+invests = account.like_investments.filter(id=id)
+if len(invests) > 0:
+    account.like_investments.remove(investment)
+else:
+    account.like_investments.add(investment)
+```
