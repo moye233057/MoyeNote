@@ -102,3 +102,25 @@ print(lst1)
 lst1.sort(key=lst2.index)
 print(lst1)
 ```
+
+## 十、列表切割
+```
+def cutlist(list, pagenum, neednum):
+    """
+    list: list.要切割的列表
+    pagenum: int.当前页码/起始位置
+    neednum: int.每页个数/结束位置的偏移量
+    """
+    listlength = len(list)
+    returnlist = []
+    if listlength > 0:
+        leftnum = 0 + (pagenum - 1) * neednum
+        rightnum = leftnum + neednum
+        if leftnum < listlength < rightnum:
+            returnlist = list[leftnum:listlength]
+        elif listlength >= rightnum:
+            returnlist = list[leftnum:rightnum]
+        return returnlist, listlength
+    else:
+        return returnlist, listlength
+```

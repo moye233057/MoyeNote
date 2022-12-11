@@ -1,3 +1,4 @@
+```
 # 一、概念
 django项目中的setting.py存放有django项目的具体配置：
 # BASE_DIR
@@ -97,3 +98,4 @@ LOGGING = {
         },
     }
 }
+```

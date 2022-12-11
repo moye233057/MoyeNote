@@ -1,3 +1,4 @@
+```
 python:3.6.5
 django 3.1.7
 
@@ -26,3 +27,4 @@ python manage.py migrate --fake
 
 # 检查DB中已经创建完毕的表结构，生成model.py
 python manage.py inspectdb > models.py 
+```

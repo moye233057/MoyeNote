@@ -1,3 +1,4 @@
+```
 # 一、创建模型
 class clsname(model.Model):
     ...
@@ -226,3 +227,4 @@ validators  自定义错误验证（列表类型），从而定制想要的验�
   2.db_table = "name"  #设置当前表在数据库存储的表名
   3.verbase_name = "name"  #设置当前表在admin后台的显示名称
   4.ordering = ["fieldname"]  #告诉Django模型对象返回的记录结果集是按照哪个字段排序的
+```
