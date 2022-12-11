@@ -90,7 +90,7 @@ for word in words:
                 })
 ```
 
-# 3、外键查询
+## 3、外键查询
 ```
  如果一个模型的字段通过OneToOneField、ForeignKey、ManyToManyField与另一个模型关联起来
  可以通过模型字段__关联模型字段来跨表查询
@@ -99,7 +99,7 @@ for word in words:
  意思是：查找User表中username为张三关联的mods表
 ```
 
-# 4、限定集合查询
+## 4、限定集合查询
 ```
  如果能够确定查询内容的范围，一般是一个列表，可以用__in进行查询
  例如要查找id为5,6,7的数据，可以这样查：
@@ -107,14 +107,14 @@ for word in words:
  mods = Mod.objects.filter(id__in=ids)
 ```
 
-# 5、模糊查询
+## 5、模糊查询
 ```
  如果想要查询表中所有某个字段包含某个内容的数据，可以用__icontains,i代表不区分大小写
  例如：
  mods = Mod.objects.filter(title__icontains='方法')
 ```
 
-# 6、排除查询
+## 6、排除查询
 ```
  如果想要查询排除掉不符合条件后的数据，可以用exclude
  例如：
@@ -122,7 +122,7 @@ for word in words:
  mods = Mod.objects.filter(username='zhangsan').exclude(title='李四')
 ```
 
-# 7、动态查询
+## 7、动态查询
 ```
  如果想要查询的字段和内容是动态的，可以将字段和内容用键值对的形式放在字典中，再用**dict形式查询
  例如：
@@ -130,7 +130,7 @@ for word in words:
  mods = Mod.objects.filter(**kwarg)
 ```
 
-# 8、时间范围查询
+## 8、时间范围查询
 ```
  如果要查询的字段的类型为models.DateTimeField,可以通过字段__gt大于/gt大于等于/lt小于/lte小于等于
  对于时间，越晚越大，例如：2022-06-30大于2022-06-28。
