@@ -69,3 +69,5 @@ data = [
 new_data = list(filter(lambda x: x["year"] == year, data))
 print(new_data)
 ```
+
+## 求两个列表之间的相似度

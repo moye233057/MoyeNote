@@ -18,9 +18,13 @@ print(lst)
 ## 三、字典值的排序，利用sorted函数
 ```
 js = {"zhangsan": 90, "lisi": 78, "wangermazi": 39}
+# 方法一:
+# 字典排序，reverse=False代表逆序
 sor1 = sorted(js.items(), key=lambda x: x[1], reverse=False)
 print(sor1)
-turJson = [(js[i], i) for i in json]
+# [('wangermazi', 39), ('lisi', 78), ('zhangsan', 90)]
+# 方法二:
+turJson = [(js[i], i) for i in js]
 sor2 = sorted(turJson, reverse=False)
 print(sor2)
 ```
