@@ -25,6 +25,4 @@ sor2 = sorted(turJson, reverse=False)
 print(sor2)
 ```
 
-```markdown
-Markdown 语法展示
-```
+## 四、利用字典统计可迭代对象的数量
