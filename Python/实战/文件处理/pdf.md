@@ -1,3 +1,5 @@
+# 一、pdf转成一张张图片
+python 3.6
 pip install pdf2image
 # 安装PyMuPDF必须指定版本，否则会报错
 pip install PyMuPDF==1.18.0
@@ -9,6 +11,11 @@ import datetime
 
 
 def pyMuPDF_fitz(pdfPath, imagePath):
+    """
+    pdfPath: 一份pdf文件的路径
+    imagePath: 存放生成图片的文件夹路径，例如./image\2022年中国视频云服务行业研究报告，会以2022年中国视频云服务行业研究报告作为图片文件夹的名称
+    """
+
     startTime_pdf2img = datetime.datetime.now()  # 开始时间
 
     print("imagePath=" + imagePath)
