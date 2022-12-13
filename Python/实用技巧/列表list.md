@@ -124,3 +124,16 @@ def cutlist(list, pagenum, neednum):
     else:
         return returnlist, listlength
 ```
+
+
+## 十一、random随机取值的应用
+```
+import random
+lst =["数学", "语文", "英语", "物理", "化学", "政治", "生物", "地理", "历史"]
+# 随机选择一个
+res1 = random.choice(lst)
+print(res1)
+# 随机选择多个
+res2 = random.sample(lst, 3)
+print(res2)
+```
