@@ -1,4 +1,3 @@
-## 一、os
 ```
 # (1)获取一个目录下面的全部目标文件
 path = "./data"
@@ -19,3 +18,19 @@ print(imgname)
 os.path.exists(path)
 ```
 
+```
+# (4)递归打印所有目录和文件
+import os
+allfiles = []
+def getAllFiles(path, level):
+    childFiles = os.listdir(path)
+    for file in childFiles:
+        filepath = os.path.join(path, file)
+        if os.path.isdir(filepath):
+            getAllFiles(path, level+1)
+        allfiles.append("\t"*level+filepath)
+getAllFiles("", 0)
+for f in reversed(allfiles):
+    print(f)
+
+```
