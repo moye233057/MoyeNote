@@ -1,5 +1,6 @@
 ## 一、大量数据，分状态判断，分标签查询
 ```
+"""django想要防止数据过多导致查询速度过慢最好的方法还是对queryset进行切片"""
 # 获取页码和页码个数
 try:
     pageNum = int(request.GET.get('pageNum'))
