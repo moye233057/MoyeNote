@@ -129,3 +129,89 @@ for text in texts:
         },
     )
 ```
+
+
+## 四、整合Query方法
+```
+def diffWordOrQuery(field, texts, size):
+    """
+    作用: 构建es分词或查询query查询体
+    field:str.要检索的字段
+    texts:list.对检索文本进行分词后的词列表
+    size:int.单次检索要返回的数量
+    """
+    body = {
+        "query": {
+            "bool": {
+                "should": []
+            },
+        },
+        "size": size,
+    }
+    for text in texts:
+        if text == " ":
+            continue
+        body["query"]["bool"]["should"].append(
+            {
+                "match": {
+                    field: text,
+                }
+            },
+        )
+    return body
+
+
+def oneWordQuery(field, text, size):
+    """
+    作用: 对单个检索词匹配单个字段检索
+    field:str.要检索的字段
+    text:str.检索文本
+    size:int.单次检索要返回的数量
+    """
+    body = {
+        "query": {
+            "bool": {
+                "must": [
+                    {
+                        "match": {
+                            field: text,
+                        }
+                    },
+                ]
+            }
+        },
+        "size": size,
+    }
+    return body
+
+
+def matchQuery(field, text, size):
+    """
+    作用: 最简单单个检索词匹配单个字段检索
+    field:str.要检索的字段
+    text:str.检索文本
+    size:int.单次检索要返回的数量
+    """
+    body = {
+        "query": {
+            "match": {field: text},
+        },
+        "size": size,
+    }
+    return body
+
+
+def matchAllQuery(size):
+    """
+    作用: 单个检索词匹配所有
+    size:int.单次检索要返回的数量
+    """
+    body = {
+        "query": {
+            "match_all": {},
+        },
+        "size": size,
+    }
+    return body
+
+```
