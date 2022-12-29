@@ -4,6 +4,9 @@ pip install pyhanlp
 pip install hanlp[full] -U  # 整个安装过程比较长，且可能安装多个版本的不同库，运行到最后即可，中途断了也会有缓存
 pip install --upgrade termcolor  # 如果提示缺少termcolor这个模块单独安装
 pip install --upgrade numpy  # 如果提示numpy相关的错误，有可能是numpy版本过低，需要更新
+
+如果pyhanlp和hanlp是复制他人已安装好的库
+需要进入pyhanlp的static文件夹，修改其中的hanlp.properties配置文件，将其中root的路径修改正确
 ```
 
 ## 主程序代码
